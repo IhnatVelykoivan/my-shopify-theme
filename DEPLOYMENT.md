@@ -28,11 +28,20 @@ npm install -g @shopify/cli @shopify/theme
 # Login to Shopify
 shopify auth login
 
-# Deploy to development theme
-shopify theme dev --store=your-store.myshopify.com
+# Option A: If you have existing store
+shopify theme push --store=YOUR-ACTUAL-STORE-NAME.myshopify.com
 
-# Push to live theme
-shopify theme push --store=your-store.myshopify.com
+# Option B: Create development store first
+shopify partners create-store
+
+# Check available stores
+shopify theme list
+
+# Deploy to development theme  
+shopify theme dev
+
+# Push to live theme (after connecting to store)
+shopify theme push
 ```
 
 ### Method 2: ZIP Upload
