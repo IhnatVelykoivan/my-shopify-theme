@@ -390,21 +390,22 @@
 }
 
 /* Responsive Breakpoints */
+
+/* Tablet Navigation - Hide buttons on tablets too (swipe is better) */
+@media screen and (max-width: 1024px) {
+  .gallery-swiper .swiper-button-next,
+  .gallery-swiper .swiper-button-prev {
+    display: none !important;
+  }
+}
+
+/* Mobile Styles */
 @media screen and (max-width: 749px) {
   .gallery-swiper {
     height: 40rem;
   }
   
-  .gallery-swiper .swiper-button-next,
-  .gallery-swiper .swiper-button-prev {
-    width: 3.2rem;
-    height: 3.2rem;
-  }
-  
-  .gallery-swiper .swiper-button-next:after,
-  .gallery-swiper .swiper-button-prev:after {
-    font-size: 1.4rem;
-  }
+  /* Navigation buttons already hidden by tablet rule above */
   
   .gallery-swiper .swiper-pagination-bullet {
     width: 1rem;
@@ -427,16 +428,7 @@
     border-radius: 0.4rem;
   }
   
-  .gallery-swiper .swiper-button-next,
-  .gallery-swiper .swiper-button-prev {
-    width: 2.8rem;
-    height: 2.8rem;
-  }
-  
-  .gallery-swiper .swiper-button-next:after,
-  .gallery-swiper .swiper-button-prev:after {
-    font-size: 1.2rem;
-  }
+  /* Navigation buttons already hidden on mobile by previous rule */
   
   .color-option {
     width: 3.6rem;

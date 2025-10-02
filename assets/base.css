@@ -412,6 +412,14 @@ body {
   box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
 }
 
+/* Hide navigation on mobile and tablet devices */
+@media screen and (max-width: 1024px) {
+  .gallery-swiper .swiper-button-next,
+  .gallery-swiper .swiper-button-prev {
+    display: none !important;
+  }
+}
+
 /* Hidden slides */
 .swiper-slide-hidden {
   display: none !important;
