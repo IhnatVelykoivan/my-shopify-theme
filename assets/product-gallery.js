@@ -110,12 +110,6 @@ class ProductGallery {
       centeredSlides: true,
       loop: false,
       
-      // Navigation
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      
       // Pagination
       pagination: {
         el: '.swiper-pagination',
@@ -149,10 +143,13 @@ class ProductGallery {
         }
       }
     };
-
-    // Hide navigation on mobile if configured
-    if (isMobile && config.navigation?.mobile === false) {
-      swiperConfig.navigation = false;
+    
+    // Only add navigation for desktop devices
+    if (isDesktop && config.navigation?.[deviceType] !== false) {
+      swiperConfig.navigation = {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      };
     }
 
     // Hide pagination if configured

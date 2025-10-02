@@ -391,11 +391,20 @@
 
 /* Responsive Breakpoints */
 
-/* Tablet Navigation - Hide buttons on tablets too (swipe is better) */
+/* Tablet Navigation - Hide buttons on tablets too (swipe is better) - FORCE HIDE */
 @media screen and (max-width: 1024px) {
   .gallery-swiper .swiper-button-next,
-  .gallery-swiper .swiper-button-prev {
+  .gallery-swiper .swiper-button-prev,
+  .swiper-button-next,
+  .swiper-button-prev {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
   }
 }
 
