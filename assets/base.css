@@ -1,0 +1,362 @@
+/*
+  Base CSS for Shopify Theme
+  Description: Core styles and utilities
+*/
+
+/* CSS Custom Properties */
+:root {
+  /* Colors */
+  --color-foreground: 33, 35, 38;
+  --color-background: 255, 255, 255;
+  --color-button: 18, 18, 18;
+  --color-button-text: 255, 255, 255;
+  --color-accent: 233, 30, 99;
+  
+  /* Alpha values */
+  --alpha-button-background: 1;
+  --alpha-button-border: 1;
+  
+  /* Typography */
+  --font-body-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-scale: 1;
+  
+  --font-heading-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 600;
+  --font-heading-scale: 1.2;
+}
+
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* 10px base */
+  height: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: 100%;
+  min-height: 100%;
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+  color: rgba(var(--color-foreground), 0.75);
+  background-color: rgb(var(--color-background));
+}
+
+@media screen and (min-width: 750px) {
+  body {
+    font-size: 1.6rem;
+  }
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: rgb(var(--color-foreground));
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  line-height: calc(1 + 0.3 / max(1, var(--font-heading-scale, 1)));
+  word-break: break-word;
+}
+
+.h1 {
+  font-size: calc(var(--font-heading-scale, 1) * 3rem);
+}
+
+@media only screen and (min-width: 750px) {
+  .h1 {
+    font-size: calc(var(--font-heading-scale, 1) * 4rem);
+  }
+}
+
+/* Layout */
+.page-width {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .page-width {
+    padding: 0 5rem;
+  }
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+@media screen and (min-width: 750px) {
+  .section {
+    padding: 5rem 0;
+  }
+}
+
+/* Grid System */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid--1-col {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid--2-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media screen and (min-width: 750px) {
+  .grid--2-col-tablet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.grid__item {
+  min-width: 0; /* Prevent grid blowout */
+}
+
+/* Product Main Layout */
+.product-main {
+  margin: 0 auto;
+  max-width: var(--page-width);
+  padding: 0 1.5rem;
+}
+
+.product-main__container {
+  padding: 0;
+}
+
+.product-main__grid {
+  gap: 3rem;
+}
+
+@media screen and (min-width: 750px) {
+  .product-main {
+    padding: 0 5rem;
+  }
+  
+  .product-main__grid {
+    gap: 5rem;
+  }
+}
+
+.product-main__media {
+  position: relative;
+}
+
+.product-main__info {
+  padding-top: 1rem;
+}
+
+@media screen and (min-width: 750px) {
+  .product-main__info {
+    padding-top: 0;
+  }
+}
+
+/* Product Info Styles */
+.product-info {
+  position: relative;
+}
+
+.product-info__title {
+  margin-bottom: 1.5rem;
+}
+
+.product-info__price {
+  margin-bottom: 2rem;
+}
+
+.product-info__description {
+  margin-top: 2rem;
+}
+
+/* Form Styles */
+.product-form {
+  margin: 2rem 0;
+}
+
+.product-form__input {
+  margin: 0 0 1.2rem 0;
+  max-width: 37rem;
+}
+
+.form__label {
+  font-weight: 500;
+  color: rgb(var(--color-foreground));
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  line-height: calc(1 + 0.2 / var(--font-body-scale));
+  margin-bottom: 0.5rem;
+}
+
+/* Button Styles */
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.1rem solid transparent;
+  padding: 1.5rem 3rem;
+  text-decoration: none;
+  background-color: rgba(var(--color-button), var(--alpha-button-background));
+  box-shadow: 0 0 0 0.1rem rgba(var(--color-button), var(--alpha-button-border));
+  color: rgb(var(--color-button-text));
+  min-width: calc(12rem + var(--buttons-border-width));
+  min-height: calc(4.5rem + var(--buttons-border-width));
+  font-family: inherit;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  line-height: calc(1 + 0.2 / var(--font-body-scale));
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  position: relative;
+  border-radius: 0.5rem;
+}
+
+.button:hover {
+  box-shadow: 0 0 0 0.2rem rgba(var(--color-button), var(--alpha-button-border));
+}
+
+.button:focus-visible {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: 0.3rem;
+  box-shadow: 0 0 0 0.2rem rgba(var(--color-button), var(--alpha-button-border));
+}
+
+/* Price Styles */
+.price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.price--large {
+  font-size: 1.8rem;
+}
+
+@media screen and (min-width: 750px) {
+  .price--large {
+    font-size: 2.4rem;
+  }
+}
+
+.price__regular {
+  font-size: 1.6rem;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.price__sale {
+  font-size: 1.6rem;
+  color: rgb(var(--color-accent));
+}
+
+/* Rich Text Editor Styles */
+.rte {
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.rte p {
+  margin: 0 0 1rem;
+}
+
+.rte p:last-child {
+  margin-bottom: 0;
+}
+
+/* Accessibility */
+.visually-hidden {
+  position: absolute !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+}
+
+.skip-to-content-link:focus {
+  z-index: 9999;
+  position: inherit;
+  overflow: auto;
+  width: auto;
+  height: auto;
+  clip: auto;
+}
+
+/* Focus Management */
+.focus-none {
+  outline: none;
+}
+
+.focus-inset:focus-visible {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: -0.2rem;
+}
+
+/* Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .motion-reduce {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Color Variables (will be overridden by theme settings) */
+:root {
+  --color-foreground: 18, 18, 18;
+  --color-background: 255, 255, 255;
+  --color-accent: 233, 30, 99;
+  --color-button: 18, 18, 18;
+  --color-button-text: 255, 255, 255;
+
+  --alpha-button-background: 1;
+  --alpha-button-border: 1;
+
+  --font-body-scale: 1;
+  --font-heading-scale: 1.2;
+
+  --page-width: 120rem;
+  --buttons-border-width: 0.1rem;
+
+  --duration-short: 0.1s;
+  --duration-default: 0.2s;
+  --duration-long: 0.5s;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .button {
+    border: 0.1rem solid;
+  }
+}
+
+/* Container Queries Support */
+@supports (container-type: inline-size) {
+  .product-main__container {
+    container-type: inline-size;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .skip-to-content-link,
+  .product-form,
+  .button {
+    display: none;
+  }
+}

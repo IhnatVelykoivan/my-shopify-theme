@@ -1,0 +1,227 @@
+{% comment %}
+  Snippet: color-switcher.liquid
+  Description: Color variant switcher with gallery filtering
+  Parameters:
+  - product: Product object
+  - section: Section object (optional)
+{% endcomment %}
+
+{%- liquid
+  assign color_option = false
+  for option in product.options_with_values
+    if option.name == 'Color' or option.name == 'Colour'
+      assign color_option = option
+      break
+    endif
+  endfor
+
+  assign current_variant = product.selected_or_first_available_variant
+  assign color_option_index = 0
+  for option in product.options_with_values
+    assign color_option_index = color_option_index | plus: 1
+    if option.name == 'Color' or option.name == 'Colour'
+      break
+    endif
+  endfor
+-%}
+
+{%- if color_option -%}
+<fieldset class="product-form__input color-switcher" data-color-selector>
+  <legend class="form__label color-switcher__label">
+    <span>{{ 'products.product.color' | t }}:</span>
+    <span class="color-switcher__selected" data-selected-color>
+      {{ current_variant.option1 | default: color_option.values.first }}
+    </span>
+  </legend>
+
+  <div class="color-switcher__options" role="radiogroup" aria-label="{{ 'products.product.color' | t }}">
+    {%- for value in color_option.values -%}
+      {%- liquid
+        assign color_handle = value | handleize
+        assign variant_for_value = false
+        
+        for variant in product.variants
+          case color_option_index
+            when 1
+              if variant.option1 == value
+                assign variant_for_value = variant
+                break
+              endif
+            when 2
+              if variant.option2 == value
+                assign variant_for_value = variant
+                break
+              endif
+            when 3
+              if variant.option3 == value
+                assign variant_for_value = variant
+                break
+              endif
+          endcase
+        endfor
+        
+        assign is_active = false
+        if current_variant and current_variant.option1 == value
+          assign is_active = true
+        elsif forloop.first and current_variant == blank
+          assign is_active = true
+        endif
+      -%}
+      
+      <input 
+        type="radio" 
+        id="template-{{ product.id }}-{{ section.id | default: 'product' }}-{{ forloop.index0 }}"
+        name="{{ product.id }}-{{ section.id | default: 'product' }}-color"
+        value="{{ value | escape }}"
+        form="{{ product_form_id | default: 'product-form' }}"
+        {% if is_active %}checked{% endif %}
+        {% unless variant_for_value.available %}disabled{% endunless %}
+        class="color-option__input visually-hidden">
+      
+      <label 
+        for="template-{{ product.id }}-{{ section.id | default: 'product' }}-{{ forloop.index0 }}"
+        class="color-option {% if is_active %}color-option--active{% endif %}{% unless variant_for_value.available %} color-option--unavailable{% endunless %}"
+        data-color="{{ color_handle }}"
+        data-color-value="{{ value | escape }}"
+        data-variant-id="{{ variant_for_value.id | default: '' }}"
+        {% if variant_for_value.available %}
+          aria-describedby="template-{{ product.id }}-{{ section.id | default: 'product' }}-{{ forloop.index0 }}-availability"
+        {% else %}
+          aria-describedby="template-{{ product.id }}-{{ section.id | default: 'product' }}-{{ forloop.index0 }}-availability"
+        {% endif %}
+        role="radio"
+        aria-checked="{% if is_active %}true{% else %}false{% endif %}"
+        tabindex="{% if is_active %}0{% else %}-1{% endif %}">
+        
+        {%- liquid
+          assign color_image = false
+          if variant_for_value and variant_for_value.image
+            assign color_image = variant_for_value.image
+          else
+            for media in product.media
+              if media.alt contains value or media.alt contains color_handle
+                assign color_image = media
+                break
+              endif
+            endfor
+          endif
+        -%}
+        
+        {%- if color_image -%}
+          <img 
+            src="{{ color_image | img_url: '100x100' }}" 
+            alt="{{ value | escape }}"
+            loading="lazy"
+            width="50"
+            height="50"
+            class="color-option__image">
+        {%- else -%}
+          <span 
+            class="color-option__swatch color-swatch--{{ color_handle }}" 
+            style="background-color: {{ value | replace: ' ', '' | downcase }};">
+            <span class="visually-hidden">{{ value | escape }}</span>
+          </span>
+        {%- endif -%}
+        
+        <span class="color-option__label">{{ value | escape }}</span>
+      </label>
+      
+      <!-- Availability status for screen readers -->
+      <span 
+        id="template-{{ product.id }}-{{ section.id | default: 'product' }}-{{ forloop.index0 }}-availability"
+        class="visually-hidden">
+        {% if variant_for_value.available %}
+          {{ 'products.product.variant_available' | t }}
+        {% else %}
+          {{ 'products.product.variant_sold_out' | t }}
+        {% endif %}
+      </span>
+      
+    {%- endfor -%}
+  </div>
+
+  <!-- Color availability message -->
+  <div class="color-switcher__message" aria-live="polite" role="status">
+    <span class="visually-hidden" data-color-availability-message></span>
+  </div>
+</fieldset>
+
+<!-- Predefined color swatches CSS -->
+<style>
+  .color-swatch--wet-stone,
+  .color-swatch--wet_stone { 
+    background-color: #6c757d !important; 
+  }
+  .color-swatch--seaweed-glow,
+  .color-swatch--seaweed_glow { 
+    background-color: #20c997 !important; 
+  }
+  .color-swatch--coral-blush,
+  .color-swatch--coral_blush { 
+    background-color: #fd7e14 !important; 
+  }
+  .color-swatch--black { 
+    background-color: #000000 !important; 
+  }
+  .color-swatch--white { 
+    background-color: #ffffff !important; 
+    border: 1px solid #e0e0e0;
+  }
+  .color-swatch--red { 
+    background-color: #dc3545 !important; 
+  }
+  .color-swatch--blue { 
+    background-color: #007bff !important; 
+  }
+  .color-swatch--green { 
+    background-color: #28a745 !important; 
+  }
+  .color-swatch--pink { 
+    background-color: #e83e8c !important; 
+  }
+  .color-swatch--purple { 
+    background-color: #6f42c1 !important; 
+  }
+  .color-swatch--yellow { 
+    background-color: #ffc107 !important; 
+  }
+  .color-swatch--orange { 
+    background-color: #fd7e14 !important; 
+  }
+  .color-swatch--gray,
+  .color-swatch--grey { 
+    background-color: #6c757d !important; 
+  }
+  .color-swatch--brown { 
+    background-color: #8d6e63 !important; 
+  }
+  .color-swatch--navy { 
+    background-color: #001f3f !important; 
+  }
+  .color-swatch--beige { 
+    background-color: #f5f5dc !important; 
+  }
+  .color-swatch--cream { 
+    background-color: #fffdd0 !important; 
+  }
+  .color-swatch--khaki { 
+    background-color: #f0e68c !important; 
+  }
+  .color-swatch--olive { 
+    background-color: #808000 !important; 
+  }
+  .color-swatch--maroon { 
+    background-color: #800000 !important; 
+  }
+  .color-swatch--teal { 
+    background-color: #008080 !important; 
+  }
+  .color-swatch--silver { 
+    background-color: #c0c0c0 !important; 
+  }
+  .color-swatch--gold { 
+    background-color: #ffd700 !important; 
+  }
+</style>
+
+{%- endif -%}

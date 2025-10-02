@@ -1,0 +1,42 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_text": "Skip to content",
+      "close": "Close",
+      "loading": "Loading..."
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    }
+  },
+  "products": {
+    "product": {
+      "color": "Color",
+      "add_to_cart": "Add to Cart",
+      "unavailable": "Unavailable",
+      "on_sale": "Sale",
+      "sold_out": "Sold out",
+      "gallery": {
+        "next_image": "Next image",
+        "previous_image": "Previous image",
+        "image_of": "Image {{ current }} of {{ total }}"
+      }
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your cart",
+      "remove": "Remove",
+      "note": "Order special instructions",
+      "checkout": "Check out",
+      "empty": "Your cart is currently empty.",
+      "continue_shopping": "Continue shopping",
+      "updated": "Cart updated",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\">shipping</a> calculated at checkout",
+      "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
+      "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{% comment %}
+  Template: index.liquid
+  Description: Homepage template
+{% endcomment %}
+
+<h1>Welcome to {{ shop.name }}</h1>
+
+{% if collections.frontpage.products.size > 0 %}
+  <div class="featured-products">
+    <h2>Featured Products</h2>
+    {% for product in collections.frontpage.products limit: 4 %}
+      <div class="product-card">
+        <a href="{{ product.url }}">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
+          {% endif %}
+          <h3>{{ product.title }}</h3>
+          <p>{{ product.price | money }}</p>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
