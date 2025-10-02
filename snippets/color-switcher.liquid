@@ -109,7 +109,7 @@
         
         {%- if color_image -%}
           <img 
-            src="{{ color_image | img_url: '100x100' }}" 
+            src="{{ color_image | image_url: width: 100, height: 100 }}" 
             alt="{{ value | escape }}"
             loading="lazy"
             width="50"
@@ -117,8 +117,7 @@
             class="color-option__image">
         {%- else -%}
           <span 
-            class="color-option__swatch color-swatch--{{ color_handle }}" 
-            style="background-color: {{ value | replace: ' ', '' | downcase }};">
+            class="color-option__swatch color-swatch--{{ color_handle }}">
             <span class="visually-hidden">{{ value | escape }}</span>
           </span>
         {%- endif -%}
@@ -146,80 +145,80 @@
   </div>
 </fieldset>
 
-<!-- Predefined color swatches CSS -->
+<!-- Predefined color swatches CSS - Matched to Product Images -->
 <style>
-  .color-swatch--wet-stone,
-  .color-swatch--wet_stone { 
-    background-color: #6c757d !important; 
+  .color-option__swatch.color-swatch--wet-stone,
+  .color-option__swatch.color-swatch--wet_stone { 
+    background-color: #8B7D6B !important; /* Warm gray-brown from product images */
   }
-  .color-swatch--seaweed-glow,
-  .color-swatch--seaweed_glow { 
-    background-color: #20c997 !important; 
+  .color-option__swatch.color-swatch--seaweed-glow,
+  .color-option__swatch.color-swatch--seaweed_glow { 
+    background-color: #2E8B57 !important; /* Sea green from product images */
   }
-  .color-swatch--coral-blush,
-  .color-swatch--coral_blush { 
-    background-color: #fd7e14 !important; 
+  .color-option__swatch.color-swatch--coral-blush,
+  .color-option__swatch.color-swatch--coral_blush { 
+    background-color: #FF6B6B !important; /* Coral pink from product images */
   }
-  .color-swatch--black { 
+  .color-option__swatch.color-swatch--black { 
     background-color: #000000 !important; 
   }
-  .color-swatch--white { 
+  .color-option__swatch.color-swatch--white { 
     background-color: #ffffff !important; 
     border: 1px solid #e0e0e0;
   }
-  .color-swatch--red { 
+  .color-option__swatch.color-swatch--red { 
     background-color: #dc3545 !important; 
   }
-  .color-swatch--blue { 
+  .color-option__swatch.color-swatch--blue { 
     background-color: #007bff !important; 
   }
-  .color-swatch--green { 
+  .color-option__swatch.color-swatch--green { 
     background-color: #28a745 !important; 
   }
-  .color-swatch--pink { 
+  .color-option__swatch.color-swatch--pink { 
     background-color: #e83e8c !important; 
   }
-  .color-swatch--purple { 
+  .color-option__swatch.color-swatch--purple { 
     background-color: #6f42c1 !important; 
   }
-  .color-swatch--yellow { 
+  .color-option__swatch.color-swatch--yellow { 
     background-color: #ffc107 !important; 
   }
-  .color-swatch--orange { 
+  .color-option__swatch.color-swatch--orange { 
     background-color: #fd7e14 !important; 
   }
-  .color-swatch--gray,
-  .color-swatch--grey { 
+  .color-option__swatch.color-swatch--gray,
+  .color-option__swatch.color-swatch--grey { 
     background-color: #6c757d !important; 
   }
-  .color-swatch--brown { 
+  .color-option__swatch.color-swatch--brown { 
     background-color: #8d6e63 !important; 
   }
-  .color-swatch--navy { 
+  .color-option__swatch.color-swatch--navy { 
     background-color: #001f3f !important; 
   }
-  .color-swatch--beige { 
+  .color-option__swatch.color-swatch--beige { 
     background-color: #f5f5dc !important; 
   }
-  .color-swatch--cream { 
+  .color-option__swatch.color-swatch--cream { 
     background-color: #fffdd0 !important; 
   }
-  .color-swatch--khaki { 
+  .color-option__swatch.color-swatch--khaki { 
     background-color: #f0e68c !important; 
   }
-  .color-swatch--olive { 
+  .color-option__swatch.color-swatch--olive { 
     background-color: #808000 !important; 
   }
-  .color-swatch--maroon { 
+  .color-option__swatch.color-swatch--maroon { 
     background-color: #800000 !important; 
   }
-  .color-swatch--teal { 
+  .color-option__swatch.color-swatch--teal { 
     background-color: #008080 !important; 
   }
-  .color-swatch--silver { 
+  .color-option__swatch.color-swatch--silver { 
     background-color: #c0c0c0 !important; 
   }
-  .color-swatch--gold { 
+  .color-option__swatch.color-swatch--gold { 
     background-color: #ffd700 !important; 
   }
 </style>

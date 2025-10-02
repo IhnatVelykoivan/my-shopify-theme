@@ -3,12 +3,33 @@
     "accessibility": {
       "skip_to_text": "Skip to content",
       "close": "Close",
-      "loading": "Loading..."
+      "loading": "Loading...",
+      "refresh_page": "Choosing a selection results in a full page refresh.",
+      "link_messages": {
+        "new_window": "Opens in a new window."
+      }
     },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",
       "page": "Page {{ page }}"
+    },
+    "breadcrumbs": {
+      "home": "Home"
+    },
+    "slider": {
+      "of": "of"
+    },
+    "share": {
+      "success_message": "Link copied to clipboard!"
     }
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content",
+    "refresh_page": "Choosing a selection results in a full page refresh.",
+    "link_messages": {
+      "new_window": "Opens in a new window."
+    },
+    "unit_price_separator": "per"
   },
   "products": {
     "product": {
@@ -17,10 +38,28 @@
       "unavailable": "Unavailable",
       "on_sale": "Sale",
       "sold_out": "Sold out",
+      "variant_available": "{{ variant }} - Available",
+      "variant_sold_out": "{{ variant }} - Sold out",
       "gallery": {
         "next_image": "Next image",
         "previous_image": "Previous image",
         "image_of": "Image {{ current }} of {{ total }}"
+      },
+      "media": {
+        "gallery_viewer": "Product gallery",
+        "load_video": "Play video {{ description }}",
+        "open_media": "Open media {{ index }} in modal",
+        "gallery_pagination": "Product gallery pagination",
+        "next_media": "Next media",
+        "previous_media": "Previous media",
+        "gallery_loaded": "Gallery loaded with {{ count }} images",
+        "image_available": "Image {{ index }} is now available"
+      },
+      "price": {
+        "from_price_html": "From {{ price }}",
+        "regular_price": "Regular price",
+        "sale_price": "Sale price",
+        "unit_price": "Unit price"
       }
     }
   },
@@ -37,6 +76,16 @@
       "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
       "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
       "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout"
+    }
+  },
+  "sections": {
+    "cart": {
+      "cart_error": "There was an error while adding to cart. Please try again.",
+      "quantity_error": "You can only add {{ quantity }} of this item to your cart."
+    },
+    "slideshow": {
+      "pause_slideshow": "Pause slideshow",
+      "play_slideshow": "Play slideshow"
     }
   }
 }

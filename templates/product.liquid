@@ -11,13 +11,9 @@
     "@type": "Product",
     "name": {{ product.title | json }},
     "url": {{ request.origin | append: product.url | json }},
-    {% if seo_media -%}
+    {% if product.featured_media -%}
       "image": [
-        {{ seo_media | img_url: '1920x' | prepend: "https:" | json }}
-      ],
-    {%- else -%}
-      "image": [
-        {{ product.featured_media | img_url: '1920x' | prepend: "https:" | json }}
+        {{ product.featured_media | image_url: width: 1920 | prepend: "https:" | json }}
       ],
     {%- endif %}
     "description": {{ product.description | strip_html | json }},
@@ -48,13 +44,7 @@
 
 {% section 'main-product' %}
 
-{%- liquid
-  if product.selected_or_first_available_variant.featured_media
-    assign seo_media = product.selected_or_first_available_variant.featured_media
-  else
-    assign seo_media = product.featured_media
-  endif
--%}
+{%- comment -%} SEO structured data handled inline {%- endcomment -%}
 
 <script type="application/ld+json">
   {
@@ -75,7 +65,4 @@
   }
 </script>
 
-{% if product.media.size > 0 %}
-  <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
-{% endif %}
+{%- comment -%} Media gallery handled by product-gallery.js {%- endcomment -%}

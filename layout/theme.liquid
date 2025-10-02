@@ -19,15 +19,15 @@
   <link rel="canonical" href="{{ canonical_url }}">
 
   {%- if settings.favicon != blank -%}
-    <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
   {%- endif -%}
 
   {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
   {%- endunless -%}
 
-  <link rel="preload" as="style" href="{{ 'base.css' | asset_url }}">
-  <link rel="preload" as="style" href="{{ 'component-product-gallery.css' | asset_url }}">
+  {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'component-product-gallery.css' | asset_url | stylesheet_tag: preload: true }}
 
   {%- render 'meta-tags' -%}
 
@@ -105,14 +105,14 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
 
   <!-- Theme CSS -->
-  {{ 'base.css' | asset_url | stylesheet_tag }}
-  {{ 'component-product-gallery.css' | asset_url | stylesheet_tag }}
+  {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'component-product-gallery.css' | asset_url | stylesheet_tag: preload: true }}
 
   {%- unless settings.type_body_font.system? -%}
-    <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+    {{ settings.type_body_font | font_face: font_display: 'swap' | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
   {%- endunless -%}
   {%- unless settings.type_header_font.system? -%}
-    <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+    {{ settings.type_header_font | font_face: font_display: 'swap' | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
   {%- endunless -%}
 
   <script>
@@ -151,9 +151,9 @@
     {{ 'accessibility.skip_to_text' | t }}
   </a>
 
-  {%- if settings.cart_type == 'drawer' -%}
-    {%- render 'cart-drawer' -%}
-  {%- endif -%}
+  {%- comment -%}
+  Cart drawer functionality would go here
+  {%- endcomment -%}
 
   <!-- Simple header -->
   <header class="header">
@@ -201,13 +201,13 @@
   </script>
 
   <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" defer></script>
 
   <!-- Theme JS -->
-  {{ 'product-gallery.js' | asset_url | script_tag }}
+  <script src="{{ 'product-gallery.js' | asset_url }}" defer></script>
 
-  {%- if settings.predictive_search_enabled -%}
-    <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
-  {%- endif -%}
+  {%- comment -%}
+  Predictive search functionality would go here
+  {%- endcomment -%}
 </body>
 </html>

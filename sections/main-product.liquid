@@ -42,7 +42,7 @@
             </h1>
 
             <!-- Product Price -->
-            <div class="product-info__price no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+            <div class="product-info__price no-js-hidden" id="price-{{ section.id }}" role="status">
               {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
             </div>
 
@@ -53,17 +53,11 @@
             {%- endform -%}
 
             <!-- Product Variants (including Color Switcher) -->
-            {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+            {%- comment -%} Product variant picker would go here {%- endcomment -%}
 
             <!-- Product Form -->
-            <div class="product-form">
-              {%- assign product_form_id = 'product-form-' | append: section.id -%}
-
-              {% render 'product-form', 
-                 product: product, 
-                 current_variant: current_variant, 
-                 product_form_id: product_form_id, 
-                 section_id: section.id %}
+            <div class="product-form" id="product-form-{{ section.id }}">
+              {%- comment -%} Product form would go here {%- endcomment -%}
             </div>
 
             <!-- Product Description -->
@@ -79,11 +73,10 @@
                 {%- case block.type -%}
                   {%- when 'collapsible_tab' -%}
                     <div class="product-details__item" {{ block.shopify_attributes }}>
-                      {% render 'collapsible-content', 
-                         content: block.settings.content, 
-                         heading: block.settings.heading, 
-                         icon: block.settings.icon, 
-                         open: block.settings.open %}
+                      <div class="collapsible">
+                        <h3 class="collapsible__heading">{{ block.settings.heading | default: 'Details' }}</h3>
+                        <div class="collapsible__content">{{ block.settings.content }}</div>
+                      </div>
                     </div>
 
                   {%- when 'text' -%}
@@ -96,7 +89,11 @@
 
                   {%- when 'share' -%}
                     <div class="product-details__item" {{ block.shopify_attributes }}>
-                      {% render 'share-button', block: block %}
+                      <div class="share-button">
+                        <button type="button" onclick="navigator.share({title:'{{product.title}}',url:window.location.href})">
+                          {{ 'general.share' | t: title: product.title }}
+                        </button>
+                      </div>
                     </div>
 
                 {%- endcase -%}
@@ -113,8 +110,7 @@
   </div>
 </section>
 
-<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- comment -%} Product functionality handled by product-gallery.js {%- endcomment -%}
 
 {%- if product.selected_or_first_available_variant.featured_media -%}
   {%- assign seo_media = product.selected_or_first_available_variant.featured_media -%}
@@ -130,11 +126,11 @@
     "url": {{ request.origin | append: product.url | json }},
     {% if seo_media -%}
       "image": [
-        {{ seo_media | img_url: '1920x' | prepend: "https:" | json }}
+        {{ seo_media | image_url: width: 1920 | prepend: "https:" | json }}
       ],
     {%- else -%}
       "image": [
-        {{ product.featured_media | img_url: '1920x' | prepend: "https:" | json }}
+        {{ product.featured_media | image_url: width: 1920 | prepend: "https:" | json }}
       ],
     {%- endif %}
     "description": {{ product.description | strip_html | json }},

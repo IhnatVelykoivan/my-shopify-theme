@@ -1,0 +1,93 @@
+{
+  "sections": {
+    "main-product": {
+      "name": "Product Information",
+      "blocks": {
+        "title": {
+          "name": "Title"
+        },
+        "subtitle": {
+          "name": "Subtitle"  
+        },
+        "price": {
+          "name": "Price"
+        },
+        "variant_picker": {
+          "name": "Variant Picker"
+        },
+        "quantity_selector": {
+          "name": "Quantity Selector"
+        },
+        "buy_buttons": {
+          "name": "Buy Buttons"
+        },
+        "description": {
+          "name": "Description"
+        },
+        "collapsible_tab": {
+          "name": "Collapsible Tab",
+          "settings": {
+            "heading": {
+              "label": "Heading"
+            },
+            "content": {
+              "label": "Content"
+            },
+            "open": {
+              "label": "Open by default"
+            }
+          }
+        },
+        "text": {
+          "name": "Custom Text",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        },
+        "share": {
+          "name": "Share Button"
+        }
+      },
+      "settings": {
+        "enable_sticky_info": {
+          "label": "Enable sticky product information"
+        },
+        "media_size": {
+          "label": "Media size",
+          "options": {
+            "small": "Small",
+            "medium": "Medium",
+            "large": "Large"
+          }
+        },
+        "constrain_to_viewport": {
+          "label": "Constrain media to viewport"
+        },
+        "media_fit": {
+          "label": "Media fit",
+          "options": {
+            "contain": "Contain",
+            "cover": "Cover"
+          }
+        },
+        "gallery_layout": {
+          "label": "Gallery layout",
+          "options": {
+            "stacked": "Stacked",
+            "thumbnail": "Thumbnail",
+            "thumbnail_slider": "Thumbnail slider"
+          }
+        },
+        "mobile_thumbnails": {
+          "label": "Mobile thumbnails",
+          "options": {
+            "show": "Show",
+            "hide": "Hide"
+          }
+        }
+      }
+    }
+  }
+}
