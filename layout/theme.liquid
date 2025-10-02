@@ -26,14 +26,14 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
   {%- endunless -%}
 
-  {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
-  {{ 'component-product-gallery.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ 'component-product-gallery.css' | asset_url | stylesheet_tag }}
 
   {%- render 'meta-tags' -%}
 
   <script>
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-    if (Shopify.designMode) {
+    if (typeof Shopify !== 'undefined' && Shopify.designMode) {
       document.documentElement.classList.add('shopify-design-mode');
     }
   </script>
@@ -108,12 +108,15 @@
   {{ 'base.css' | asset_url | stylesheet_tag }}
   {{ 'component-product-gallery.css' | asset_url | stylesheet_tag }}
 
+  {%- comment -%}
+  Font preloading disabled - using system fonts for better performance
   {%- unless settings.type_body_font.system? -%}
-    {{ settings.type_body_font | font_face: font_display: 'swap' | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
+    {{ settings.type_body_font | font_face: font_display: 'swap' }}
   {%- endunless -%}
   {%- unless settings.type_header_font.system? -%}
-    {{ settings.type_header_font | font_face: font_display: 'swap' | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
+    {{ settings.type_header_font | font_face: font_display: 'swap' }}
   {%- endunless -%}
+  {%- endcomment -%}
 
   <script>
     window.shopUrl = '{{ request.origin }}';
