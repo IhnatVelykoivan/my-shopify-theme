@@ -1,23 +1,252 @@
 {% comment %}
   Template: index.liquid
-  Description: Homepage template
+  Description: Professional Gallery Demo - Matte Lip Kit
 {% endcomment %}
 
-<h1>Welcome to {{ shop.name }}</h1>
-
-{% if collections.frontpage.products.size > 0 %}
-  <div class="featured-products">
-    <h2>Featured Products</h2>
-    {% for product in collections.frontpage.products limit: 4 %}
-      <div class="product-card">
-        <a href="{{ product.url }}">
-          {% if product.featured_image %}
-            <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
-          {% endif %}
-          <h3>{{ product.title }}</h3>
-          <p>{{ product.price | money }}</p>
-        </a>
-      </div>
-    {% endfor %}
+<div class="demo-container">
+  <div class="demo-header">
+    <h1 class="demo-title">Matte Lip Kit - Professional Gallery</h1>
+    <p class="demo-subtitle">Interactive product gallery with instant color variant filtering</p>
+    <span class="demo-badge">Professional Demo</span>
   </div>
-{% endif %}
+
+  <!-- Product Layout -->
+  <div class="product-main">
+    <div class="product-main__container">
+      <div class="grid grid--2-col-tablet product-main__grid">
+        
+        <!-- Product Gallery -->
+        <div class="grid__item product-main__media">
+          <div class="product-gallery" 
+               data-product-gallery 
+               data-product-handle="mette-lip-kit">
+            
+            <!-- Swiper Container -->
+            <div class="swiper gallery-swiper"
+                 data-swiper-config='{
+                   "slidesPerView": {
+                     "mobile": 1,
+                     "tablet": 1,
+                     "desktop": 1
+                   },
+                   "pagination": {
+                     "mobile": true,
+                     "tablet": true,
+                     "desktop": true
+                   },
+                   "navigation": {
+                     "mobile": false,
+                     "tablet": true,
+                     "desktop": true
+                   },
+                   "spaceBetween": {
+                     "mobile": 10,
+                     "tablet": 15,
+                     "desktop": 20
+                   }
+                 }'
+                 data-media-count="12">
+              
+              <div class="swiper-wrapper">
+                
+                <!-- Wet Stone Images (4 slides) - Preloaded -->
+                <div class="swiper-slide" data-color="wet-stone" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #8B7D6B; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Wet Stone</div>
+                      <div style="font-size: 20px;">View 1</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-color="wet-stone" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #8B7D6B; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Wet Stone</div>
+                      <div style="font-size: 20px;">View 2</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-color="wet-stone" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #8B7D6B; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Wet Stone</div>
+                      <div style="font-size: 20px;">View 3</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-color="wet-stone" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #8B7D6B; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Wet Stone</div>
+                      <div style="font-size: 20px;">View 4</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Seaweed Glow Images (4 slides) -->
+                <div class="swiper-slide" data-color="seaweed-glow" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #2E8B57; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Seaweed Glow</div>
+                      <div style="font-size: 20px;">View 1</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-color="seaweed-glow" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #2E8B57; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Seaweed Glow</div>
+                      <div style="font-size: 20px;">View 2</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-color="seaweed-glow" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #2E8B57; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Seaweed Glow</div>
+                      <div style="font-size: 20px;">View 3</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-color="seaweed-glow" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #2E8B57; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Seaweed Glow</div>
+                      <div style="font-size: 20px;">View 4</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Coral Blush Images (4 slides) -->
+                <div class="swiper-slide" data-color="coral-blush" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #FF6B6B; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Coral Blush</div>
+                      <div style="font-size: 20px;">View 1</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-color="coral-blush" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #FF6B6B; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Coral Blush</div>
+                      <div style="font-size: 20px;">View 2</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-color="coral-blush" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #FF6B6B; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Coral Blush</div>
+                      <div style="font-size: 20px;">View 3</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide" data-color="coral-blush" data-media-type="image">
+                  <div class="product-media product-media--image">
+                    <div style="width: 100%; height: 600px; background: #FF6B6B; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 24px; border-radius: 8px;">
+                      <div style="font-weight: bold; margin-bottom: 8px;">Coral Blush</div>
+                      <div style="font-size: 20px;">View 4</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pagination -->
+              <div class="swiper-pagination"></div>
+
+              <!-- Navigation -->
+              <button class="swiper-button-next" aria-label="Next image">
+                <span class="visually-hidden">Next</span>
+              </button>
+              <button class="swiper-button-prev" aria-label="Previous image">
+                <span class="visually-hidden">Previous</span>
+              </button>
+            </div>
+
+            <!-- Status for accessibility -->
+            <div class="visually-hidden" aria-live="polite" role="status">
+              <span data-gallery-status>Gallery loaded with 12 images</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="grid__item product-main__info">
+          <div class="product-info">
+            <h1 class="product-info__title h1">Matte Lip Kit</h1>
+            
+            <div class="product-info__price">
+              <span class="price price--large">
+                <span class="price__container">
+                  <div class="price__regular">
+                    <span class="price-item price-item--regular">$24.99 USD</span>
+                  </div>
+                </span>
+              </span>
+            </div>
+
+            <!-- Color Switcher -->
+            <fieldset class="product-form__input color-switcher" data-color-selector>
+              <legend class="form__label color-switcher__label">
+                <span>Color:</span>
+                <span class="color-switcher__selected" data-selected-color>Wet Stone</span>
+              </legend>
+
+              <div class="color-switcher__options">
+                <div class="color-option-wrapper">
+                  <input type="radio" id="color-wet-stone" name="color" value="Wet Stone" checked class="color-option__input visually-hidden">
+                  <label for="color-wet-stone" 
+                         class="color-option color-option--active"
+                         data-color="wet-stone"
+                         data-color-value="Wet Stone"
+                         style="background-color: #8B7D6B;">
+                    <span class="visually-hidden">Wet Stone</span>
+                  </label>
+                </div>
+
+                <div class="color-option-wrapper">
+                  <input type="radio" id="color-seaweed-glow" name="color" value="Seaweed Glow" class="color-option__input visually-hidden">
+                  <label for="color-seaweed-glow" 
+                         class="color-option"
+                         data-color="seaweed-glow"
+                         data-color-value="Seaweed Glow"
+                         style="background-color: #2E8B57;">
+                    <span class="visually-hidden">Seaweed Glow</span>
+                  </label>
+                </div>
+
+                <div class="color-option-wrapper">
+                  <input type="radio" id="color-coral-blush" name="color" value="Coral Blush" class="color-option__input visually-hidden">
+                  <label for="color-coral-blush" 
+                         class="color-option"
+                         data-color="coral-blush"
+                         data-color-value="Coral Blush"
+                         style="background-color: #FF6B6B;">
+                    <span class="visually-hidden">Coral Blush</span>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Product Form -->
+            <div class="product-form">
+              <div class="product-form__buttons">
+                <button type="submit" 
+                        name="add" 
+                        class="btn product-form__cart-submit btn--primary">
+                  <span>Add to Cart</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Product Description -->
+            <div class="product-info__description">
+              <p>Premium matte lip kit with long-lasting, full-coverage color and comfortable finish.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

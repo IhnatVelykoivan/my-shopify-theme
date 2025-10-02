@@ -186,7 +186,52 @@ class ProductGallery {
     const activeOption = document.querySelector('.color-option--active[data-color]');
     this.currentColor = activeOption?.dataset.color || this.colorOptions[0]?.dataset.color || '';
 
+    // Add click listeners to color options
+    this.colorOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.handleColorChange(option);
+      });
+    });
+
+    // Initial filter
+    if (this.currentColor) {
+      this.filterSlidesByColor(this.currentColor);
+    }
+
     console.log('ProductGallery: Color switching initialized with color:', this.currentColor);
+  }
+
+  handleColorChange(selectedOption) {
+    const newColor = selectedOption.dataset.color;
+    const colorValue = selectedOption.dataset.colorValue || newColor;
+
+    if (newColor === this.currentColor) return;
+
+    // Update active states
+    this.colorOptions.forEach(option => {
+      option.classList.remove('color-option--active');
+    });
+    selectedOption.classList.add('color-option--active');
+
+    // Update selected color display
+    const selectedColorSpan = document.querySelector('[data-selected-color]');
+    if (selectedColorSpan) {
+      selectedColorSpan.textContent = colorValue;
+    }
+
+    // Update radio input if exists
+    const radioInput = selectedOption.querySelector('input[type="radio"]') || 
+                      document.querySelector(`input[value="${colorValue}"]`);
+    if (radioInput) {
+      radioInput.checked = true;
+    }
+
+    // Filter slides
+    this.currentColor = newColor;
+    this.filterSlidesByColor(newColor);
+
+    console.log('ProductGallery: Color changed to:', newColor);
   }
 
   filterSlidesByColor(color) {
@@ -194,32 +239,37 @@ class ProductGallery {
 
     const slides = this.container.querySelectorAll('.swiper-slide');
     let visibleSlides = [];
+    let currentVisibleIndex = 0;
 
     // Show/hide slides based on color
     slides.forEach((slide, index) => {
       if (slide.dataset.color === color) {
+        slide.classList.remove('swiper-slide-hidden');
         slide.style.display = 'block';
         visibleSlides.push(index);
         
         // Load lazy images for this slide
         this.loadLazyImage(slide);
       } else {
+        slide.classList.add('swiper-slide-hidden');
         slide.style.display = 'none';
       }
     });
 
-    // Update Swiper
-    this.swiper.update();
-    
-    // Go to first visible slide
-    if (visibleSlides.length > 0) {
-      this.swiper.slideTo(visibleSlides[0], 0);
+    // Destroy and recreate Swiper with filtered slides for better performance
+    if (this.swiper) {
+      this.swiper.destroy(true, true);
     }
 
-    // Update navigation visibility
-    this.updateNavigationState(visibleSlides.length);
-
-    console.log(`ProductGallery: Filtered to ${visibleSlides.length} slides for color: ${color}`);
+    // Recreate swiper with only visible slides
+    setTimeout(() => {
+      this.initSwiper();
+      
+      // Update navigation visibility
+      this.updateNavigationState(visibleSlides.length);
+      
+      console.log(`ProductGallery: Filtered to ${visibleSlides.length} slides for color: ${color}`);
+    }, 10);
     
     return visibleSlides.length;
   }

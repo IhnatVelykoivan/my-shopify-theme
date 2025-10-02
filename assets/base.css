@@ -298,6 +298,225 @@ h1, h2, h3, h4, h5, h6 {
   clip: auto;
 }
 
+/* Header/Footer Styles */
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem 0;
+}
+
+.header__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer {
+  background-color: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+  padding: 2rem 0;
+  margin-top: 4rem;
+}
+
+.footer__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+  color: #666666;
+}
+
+/* Demo Enhancements */
+body {
+  background-color: #f8f9fa;
+  padding: 2rem;
+}
+
+.demo-container {
+  max-width: 120rem;
+  margin: 0 auto;
+  background: white;
+  padding: 4rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.1);
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.demo-title {
+  font-size: 3rem;
+  color: #212126;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.demo-subtitle {
+  font-size: 1.6rem;
+  color: rgba(33, 33, 38, 0.7);
+  margin-bottom: 2rem;
+}
+
+.demo-badge {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  background-color: #e91e63;
+  color: white;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Improved gallery container */
+.gallery-swiper {
+  border-radius: 1.2rem;
+  box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.08);
+}
+
+/* Better color options */
+.color-option {
+  box-shadow: 0 0.3rem 1.2rem rgba(var(--color-foreground), 0.12);
+  border-width: 0.3rem;
+}
+
+.color-option:hover {
+  box-shadow: 0 0.6rem 2.4rem rgba(var(--color-foreground), 0.18);
+}
+
+.color-option--active {
+  box-shadow: 0 0.6rem 2.4rem rgba(var(--color-accent), 0.25);
+}
+
+/* Improved button */
+.btn {
+  border-radius: 0.8rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Better price styling */
+.price--large {
+  font-weight: 700;
+  color: #e91e63;
+}
+
+/* Navigation buttons improvements */
+.gallery-swiper .swiper-button-next,
+.gallery-swiper .swiper-button-prev {
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* Hidden slides */
+.swiper-slide-hidden {
+  display: none !important;
+}
+
+/* Product Layout */
+.product-main {
+  padding: 2rem 0;
+}
+
+.product-main__container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid--2-col-tablet {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 750px) {
+  .grid--2-col-tablet {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.product-main__grid {
+  align-items: start;
+}
+
+.product-main__media {
+  /* Gallery styles already defined */
+}
+
+.product-main__info {
+  padding: 2rem 0;
+}
+
+/* Product Info Styles */
+.product-info__title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #212126;
+}
+
+.product-info__price {
+  margin-bottom: 2rem;
+}
+
+.price__container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.price-item--regular {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #e91e63;
+}
+
+/* Product Form */
+.product-form {
+  margin-top: 3rem;
+}
+
+.product-form__buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn--primary {
+  background-color: #212126;
+  color: white;
+  padding: 1.5rem 3rem;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn--primary:hover {
+  background-color: #2a2a30;
+}
+
+/* Product Description */
+.product-info__description {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(var(--color-foreground), 0.1);
+}
+
+.product-info__description p {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: rgba(33, 33, 38, 0.8);
+}
+
 /* Focus Management */
 .focus-none {
   outline: none;
