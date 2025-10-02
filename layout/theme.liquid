@@ -105,8 +105,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
 
   <!-- Theme CSS -->
-  {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
-  {{ 'component-product-gallery.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ 'component-product-gallery.css' | asset_url | stylesheet_tag }}
 
   {%- unless settings.type_body_font.system? -%}
     {{ settings.type_body_font | font_face: font_display: 'swap' | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
